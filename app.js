@@ -10,9 +10,28 @@ var app = new Vue({
   mounted() {
     this.board = this.generateBoard(this.len);
     this.log(this.board);
+    var myElement = document.getElementById("app");
+    var mc = new Hammer(myElement, {
+      recognizers: [[Hammer.Swipe, { direction: Hammer.DIRECTION_ALL }]]
+    });
+    mc.on("swipe", ev => {
+      console.log(ev.direction);
+      //2 left 8 up 4 right 16 down
+      this.move(ev.direction);
+    });
   },
   methods: {
     move(dir) {
+      if (dir == 2) {
+        dir = "left";
+      } else if (dir == 8) {
+        dir = "up";
+      } else if (dir == 4) {
+        dir = "right";
+      } else if (dir == 16) {
+        dir = "down";
+      }
+      console.log(dir);
       let [x, y] = this.location.split(".").map(z => +z);
 
       if (dir === "left") {
@@ -55,13 +74,13 @@ var app = new Vue({
         case 5:
           return "#e67e22";
         case 6:
-          return "#f39c12";
+          return "#fc5c65";
         case 7:
           return "#7f8c8d";
         case 8:
           return "#3867d6";
         case 9:
-          return "#fc5c65";
+          return "#f39c12";
       }
     },
     swap(index1, index2) {
@@ -93,48 +112,3 @@ var app = new Vue({
     }
   }
 });
-
-var touchstartX = 0;
-var touchstartY = 0;
-var touchendX = 0;
-var touchendY = 0;
-
-var gesuredZone = document.getElementById("app");
-
-gesuredZone.addEventListener(
-  "touchstart",
-  function(event) {
-    touchstartX = event.screenX;
-    touchstartY = event.screenY;
-  },
-  false
-);
-
-gesuredZone.addEventListener(
-  "touchend",
-  function(event) {
-    touchendX = event.screenX;
-    touchendY = event.screenY;
-    handleGesure();
-  },
-  false
-);
-
-function handleGesure() {
-  var swiped = "swiped: ";
-  if (touchendX < touchstartX) {
-    alert(swiped + "left!");
-  }
-  if (touchendX > touchstartX) {
-    alert(swiped + "right!");
-  }
-  if (touchendY < touchstartY) {
-    alert(swiped + "down!");
-  }
-  if (touchendY > touchstartY) {
-    alert(swiped + "left!");
-  }
-  if (touchendY == touchstartY) {
-    alert("tap!");
-  }
-}
