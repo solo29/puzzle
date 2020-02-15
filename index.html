@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="center">
+      <!-- <div class="center">
         <button @click="move('down')">UP</button>
       </div>
       <div class="center">
@@ -33,7 +33,14 @@
       </div>
       <div class="center">
         <button @click="move('up')">DOWN</button>
-      </div>
+      </div> -->
+      <br /><br /><br />
+      <br /><br /><br /><br />
+      <select v-model="len" name="" id="" @change="changeSize">
+        <option value="3">3X3 size</option>
+        <option value="4">4X4 size</option>
+        <option value="5">5X5 size</option>
+      </select>
     </div>
     <script src="app.js"></script>
   </body>

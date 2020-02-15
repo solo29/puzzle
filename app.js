@@ -1,10 +1,23 @@
+function getSize() {
+  let paths = window.location.href.split("#");
+  let last = paths[paths.length - 1];
+  let size = parseInt(last);
+  if (!size) {
+    return 3;
+  }
+  if (size > 5) {
+    return 5;
+  }
+  return size;
+}
+
 var app = new Vue({
   el: "#app",
   data: {
     message: "Hello Vue!",
     board: [],
     location: "0.0",
-    len: 3
+    len: getSize()
   },
 
   mounted() {
@@ -59,11 +72,12 @@ var app = new Vue({
       return this.board[x][y];
     },
     getColor(index) {
+      if (index == 0 || index == null) return "#000";
       index = index % 10;
 
       switch (index) {
         case 0:
-          return "#fff";
+          return "#F50057";
         case 1:
           return "#3498db";
         case 2:
@@ -101,15 +115,37 @@ var app = new Vue({
     generateBoard(len) {
       let arr = [];
       let counter = 0;
+      let temp = [];
+      for (let i = 1; i < len * len; i++) {
+        temp.push(i);
+      }
+      shuffle(temp);
+      temp.unshift(29);
       for (let i = 0; i < len; i++) {
         let inner = [];
         for (let j = 0; j < len; j++) {
-          inner.push(counter++);
+          inner.push(temp[counter++]);
         }
         arr.push(inner);
       }
       arr[0][0] = null;
       return arr;
+    },
+    changeSize(val) {
+      let baseURL = window.location.origin;
+      window.location.href = baseURL + "#" + val.target.value;
+      location.reload();
     }
   }
 });
+
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = a[i];
+    a[i] = a[j];
+    a[j] = x;
+  }
+  return a;
+}
