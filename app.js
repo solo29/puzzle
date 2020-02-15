@@ -22,7 +22,7 @@ var app = new Vue({
   },
   methods: {
     move(dir) {
-      window.navigator.vibrate(200);
+      //swindow.navigator.vibrate(200);
       if (dir == 2) {
         dir = "left";
       } else if (dir == 8) {
