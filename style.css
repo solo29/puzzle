@@ -1,0 +1,12 @@
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.row .el {
+  border: 1px solid black;
+  padding: 30px;
+  font-size: 20px;
+  width: 100%;
+}

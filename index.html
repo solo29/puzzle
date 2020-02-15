@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="board">
+        <div class="row" v-for="row of board">
+          <div class="el" v-for="el of row">
+            {{el}}
+          </div>
+        </div>
+      </div>
+
+      <button @click="move('up')">UP</button>
+      <div style="display:flex">
+        <button @click="move('left')">LEFT</button>
+        <button @click="move('right')">RIGHT</button>
+      </div>
+      <button @click="move('down')">DOWN</button>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
