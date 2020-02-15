@@ -11,7 +11,11 @@
     <div id="app">
       <div class="board">
         <div class="row" v-for="row of board">
-          <div class="el" v-for="el of row">
+          <div
+            class="el"
+            v-for="el of row"
+            :style="'background-color:'+ getColor(el)"
+          >
             {{el}}
           </div>
         </div>

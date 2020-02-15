@@ -40,37 +40,28 @@ var app = new Vue({
     },
     getColor(index) {
       index = index % 10;
+
       switch (index) {
         case 0:
-          "#1abc9c";
-          break;
+          return "#1abc9c";
         case 1:
-          "#3498db";
-          break;
+          return "#3498db";
         case 2:
-          "#9b59b6";
-          break;
+          return "#9b59b6";
         case 3:
-          "#34495e";
-          break;
+          return "#34495e";
         case 4:
-          "#f1c40f";
-          break;
+          return "#f1c40f";
         case 5:
-          "#e67e22";
-          break;
+          return "#e67e22";
         case 6:
-          "#f39c12";
-          break;
+          return "#f39c12";
         case 7:
-          "#7f8c8d";
-          break;
+          return "#7f8c8d";
         case 8:
-          "#3867d6";
-          break;
+          return "#3867d6";
         case 9:
-          "#fc5c65";
-          break;
+          return "#fc5c65";
       }
     },
     swap(index1, index2) {
@@ -102,3 +93,48 @@ var app = new Vue({
     }
   }
 });
+
+var touchstartX = 0;
+var touchstartY = 0;
+var touchendX = 0;
+var touchendY = 0;
+
+var gesuredZone = document.getElementById("app");
+
+gesuredZone.addEventListener(
+  "touchstart",
+  function(event) {
+    touchstartX = event.screenX;
+    touchstartY = event.screenY;
+  },
+  false
+);
+
+gesuredZone.addEventListener(
+  "touchend",
+  function(event) {
+    touchendX = event.screenX;
+    touchendY = event.screenY;
+    handleGesure();
+  },
+  false
+);
+
+function handleGesure() {
+  var swiped = "swiped: ";
+  if (touchendX < touchstartX) {
+    alert(swiped + "left!");
+  }
+  if (touchendX > touchstartX) {
+    alert(swiped + "right!");
+  }
+  if (touchendY < touchstartY) {
+    alert(swiped + "down!");
+  }
+  if (touchendY > touchstartY) {
+    alert(swiped + "left!");
+  }
+  if (touchendY == touchstartY) {
+    alert("tap!");
+  }
+}
