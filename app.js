@@ -62,7 +62,7 @@ var app = new Vue({
 
       switch (index) {
         case 0:
-          return "#1abc9c";
+          return "#fff";
         case 1:
           return "#3498db";
         case 2:
@@ -76,7 +76,7 @@ var app = new Vue({
         case 6:
           return "#fc5c65";
         case 7:
-          return "#7f8c8d";
+          return "#1abc9c";
         case 8:
           return "#3867d6";
         case 9:
